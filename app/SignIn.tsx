@@ -6,7 +6,6 @@ const SignIn = () => {
   async function handleSignIn(){
     await signInWithPopup(Auth , provider).then(()=>{
       navigate("/")
-
     })
   }
 
