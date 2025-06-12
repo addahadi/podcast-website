@@ -9,26 +9,26 @@ interface items {
 }
 export const sidebarLinks : items[] = [
   {
-    imgURL: "../public/icons/home.svg",
+    imgURL: "/podcast-website/icons/home.svg",
     route: "/",
     label: "Home",
     color :'#22a12a',
 
   },
   {
-    imgURL: "../public/icons/discover.svg",
+    imgURL: "/podcast-website/icons/discover.svg",
     route: "/discover",
     label: "Discover",
     color :'#fa8900',
   },
   {
-    imgURL: "../public/icons/microphone.svg",
+    imgURL: "/podcast-website/icons/microphone.svg",
     route: "/createpodcast",
     label: "Create Podcast",
     color :'#ef4444',
   },
   {
-    imgURL :"../public/icons/profile.svg",
+    imgURL :"/podcast-website/icons/profile.svg",
     route:"/profile",
     label:"Profile",
     color :'#7d06a2',

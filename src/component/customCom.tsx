@@ -10,7 +10,6 @@ export function useEpisodes(token:string , id  : string){
   useEffect(()=>{
     async function fetchData(){
       await APIController().getEpisode(token , id).then((data)=>{
-        console.log(data)
         const {items} = data
         setData(items)
       })
@@ -58,7 +57,6 @@ export function usePodcasts({User , setPodcastID,  setPodcastData,  setView } : 
     if (!User?.email) return;
 
     let data = (await database.collection("users").doc(User.email).collection('podcasts').doc(value.id).get()).data();
-    console.log(data);
     
     if (data) {
       await database.collection("users").doc(User.email).collection('podcasts').doc(value.id).update({

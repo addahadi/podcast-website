@@ -14,7 +14,7 @@ const PodcastPage = ({ setView, User, podcastData, setPodcastID, setPodcastData,
   // Determine which data to use based on podcast source
   const { Data, handleClick } = podcastData?.spotify ? spotifyData : nonSpotifyData;
 
-  const { audio, setAudio } = useAudio();
+  const { setAudio } = useAudio();
 
   function render() {
     if (!podcastData || podcastData?.spotify) return;
@@ -35,50 +35,74 @@ const PodcastPage = ({ setView, User, podcastData, setPodcastID, setPodcastData,
         <h1 className="text-white-2 text-2xl font-bold">Currently Playing</h1>
         <p className="flex flex-row gap-2 text-white-1 text-lg">
           {podcastData?.view}
-          <img src="../public/icons/headphone.svg"/>
+          <img src="/podcast-website/icons/headphone.svg" />
         </p>
       </header>
-      <div className="flex flex-row gap-8 max-sm:flex-col max-sm:justify-center max-sm:items-center">
-        <img src={podcastData?.imgURL} width={250} className="rounded max-sm:w-[300px]" />
+      <div className="flex fl/podcast-website/ex-row gap-8 max-sm:flex-col max-sm:justify-center max-sm:items-center">
+        <img
+          src={podcastData?.imgURL}
+          width={250}
+          className="rounded max-sm:w-[300px]"
+        />
         <section className="flex flex-col gap-14 max-sm:gap-4">
           <h3 className="text-white-1 flex flex-row gap-2 items-center sm:-mb-11 font-bold text-[15px] max-sm:-mb-2">
-            <img src="../public/icons/verified.svg" width={20} height={20} />
+            <img
+              src="/podcast-website/icons/verified.svg"
+              width={20}
+              height={20}
+            />
             <span>{podcastData?.author}</span>
           </h3>
-          <h1  className= "lg:leading-loose text-white-2 max-xl:text-6xl  font-extrabold sm:text-3xl max-sm:text-2xl" style={{lineHeight:"40px"}}>{podcastData?.podcastName.slice(0, 40)}</h1>
+          <h1
+            className="lg:leading-loose text-white-2 max-xl:text-6xl  font-extrabold sm:text-3xl max-sm:text-2xl"
+            style={{ lineHeight: "40px" }}
+          >
+            {podcastData?.podcastName.slice(0, 40)}
+          </h1>
           <button
             onClick={render}
             className="bg-red-1 p-5 rounded-sm max-w-fit h-12 font-bold text-white-1 flex flex-row gap-2 items-center justify-center hover:border hover:text-white-1 hover:border-red-1 hover:bg-[#000] transition ease delay-100"
           >
-            <img src="../public/icons/watch.svg" width={25} height={25} />
+            <img
+              src="/podcast-website/icons/watch.svg"
+              width={25}
+              height={25}
+            />
             Run The Podcast
           </button>
         </section>
       </div>
-        <span className=' ml-auto  mr-auto w-full h-1 bg-black-5 rounded-sm m-10'></span>
+      <span className=" ml-auto  mr-auto w-full h-1 bg-black-5 rounded-sm m-10"></span>
       <main className="flex flex-col gap-6">
         <h1 className="text-white-2 text-2xl font-bold mt-2">Transcription</h1>
         <p className="text-white-2 ml-4">{podcastData?.podcastDesc}</p>
       </main>
       <footer className="">
-        <h1 className="text-white-2 text-2xl font-bold mt-8 mb-8">{podcastData?.spotify ? 'Episodes' : 'Similar Podcasts'}</h1>
+        <h1 className="text-white-2 text-2xl font-bold mt-8 mb-8">
+          {podcastData?.spotify ? "Episodes" : "Similar Podcasts"}
+        </h1>
         {!podcastData?.spotify ? (
           <div className="podcastgrid mt-8">
             {Data.map((value, index) => (
-              <PodcastCard key={index} value={value as podcastdata} handleClick={handleClick} />
+              <PodcastCard
+                key={index}
+                value={value as podcastdata}
+                handleClick={handleClick}
+              />
             ))}
           </div>
         ) : (
           <div className="flex flex-col">
             {Data.map((value: any, index) => {
-              const { description, images, name, release_date, duration_ms } = value;
+              const { description, images, name, release_date, duration_ms } =
+                value;
               const Value: EpisodeData = {
                 podcastName: name,
                 podcastDesc: description.substring(0, 100),
                 imgURL: images[1].url,
                 date: release_date,
                 duration: duration_ms,
-                author: podcastData.author
+                author: podcastData.author,
               };
 
               return <EpisodeList key={index} value={Value} />;

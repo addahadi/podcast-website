@@ -37,19 +37,6 @@ export const APIController = function() {
         return data.categories.items;
     }
 
-    const _getPlaylistByGenre = async (token:string, genreId:string) => {
-
-        const limit = 10;
-        
-        const result = await fetch(`https://api.spotify.com/v1/browse/categories`, {
-            method: 'GET',
-            headers: { 'Authorization' : 'Bearer ' + token}
-        });
-
-        const data = await result.json();
-        console.log(data)
-        return data;
-    }
 
     const _getTracks = async (token:string, tracksEndPoint:string) => {
 
@@ -90,9 +77,6 @@ export const APIController = function() {
         },
         getGenres(token:string) {
             return _getGenres(token);
-        },
-        getPlaylistByGenre(token:string, genreId:string) {
-            return _getPlaylistByGenre(token, genreId);
         },
         getTracks(token:string, tracksEndPoint:string) {
             return _getTracks(token, tracksEndPoint);

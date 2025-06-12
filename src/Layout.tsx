@@ -14,19 +14,32 @@ const Layout = ({Children}:ComponentProps) => {
   return (
     <>
       <div className="flex relative flex-row">
-        {showLeftside && location.pathname !== '/signin' && <Leftside User = {currentuser} color={color} setColor={setColor} />}
-        
+        {showLeftside && location.pathname !== "/signin" && (
+          <Leftside User={currentuser} color={color} setColor={setColor} />
+        )}
+
         <section className="dashboard overflow-y-auto box-border flex-1 h-screen p-8 max-sm:px-4">
-          <div className='flex items-center justify-between md:hidden mb-10'>
-            <img src="../public/icons/podcast-logo.svg" width={50} height={50} className=''></img>
+          <div className="flex items-center justify-between md:hidden mb-10">
+            <img
+              src="/podcast-website/icons/podcast-logo.svg"
+              width={50}
+              height={50}
+              className=""
+            ></img>
             <MobileNav />
           </div>
           {Children}
         </section>
-        
-        {showLeftside && location.pathname !== '/signin' && <Rightside setPodcastData={setPodcastData} User = {currentuser} color={color} />}
+
+        {showLeftside && location.pathname !== "/signin" && (
+          <Rightside
+            setPodcastData={setPodcastData}
+            User={currentuser}
+            color={color}
+          />
+        )}
       </div>
-      {showAudio && <AudioPlayer/>}
+      {showAudio && <AudioPlayer />}
     </>
   );
 };

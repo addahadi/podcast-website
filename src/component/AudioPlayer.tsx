@@ -14,8 +14,7 @@ const AudioPlayer = () => {
   const [duration, setDuration] = useState(0);
   const [isMuted, setIsMuted] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
-  const { audio , setAudio} = useAudio();
-  console.log(audio)
+  const { audio} = useAudio();
   const togglePlayPause = () => {
     if (audioRef.current?.paused) {
       audioRef.current?.play();
@@ -99,11 +98,7 @@ const AudioPlayer = () => {
       })}
     >
       {/* change the color for indicator inside the Progress component in ui folder */}
-      <Progress 
-
-        value={currentTime / duration * 100}
-        max={duration}
-      />
+      <Progress value={(currentTime / duration) * 100} max={duration} />
       <section className="glassmorphism-black flex h-[80px] w-full items-center justify-between px-4 max-md:justify-center max-md:gap-5 md:px-12">
         <audio
           ref={audioRef}
@@ -115,7 +110,7 @@ const AudioPlayer = () => {
         <div className="flex items-center gap-4 max-md:hidden">
           <Link to={`/podcast/${audio?.id}`}>
             <img
-              src={audio?.imgURL! || "/images/player1.png"}
+              src={audio?.imgURL! || "/podcast-website/images/player1.png"}
               width={64}
               height={64}
               alt="player1"
@@ -132,7 +127,7 @@ const AudioPlayer = () => {
         <div className="flex-center cursor-pointer gap-3 md:gap-6">
           <div className="flex items-center gap-1.5">
             <img
-              src={"/icons/reverse.svg"}
+              src={"/podcast-website/icons/reverse.svg"}
               width={24}
               height={24}
               alt="rewind"
@@ -141,7 +136,11 @@ const AudioPlayer = () => {
             <h2 className="text-12 font-bold text-white-4">-5</h2>
           </div>
           <img
-            src={isPlaying ? "/icons/Pause.svg" : "/icons/Play.svg"}
+            src={
+              isPlaying
+                ? "/podcast-website/icons/Pause.svg"
+                : "/podcast-website/icons/Play.svg"
+            }
             width={30}
             height={30}
             alt="play"
@@ -150,7 +149,7 @@ const AudioPlayer = () => {
           <div className="flex items-center gap-1.5">
             <h2 className="text-12 font-bold text-white-4">+5</h2>
             <img
-              src={"/icons/forward.svg"}
+              src={"/podcast-website/icons/forward.svg"}
               width={24}
               height={24}
               alt="forward"
@@ -164,7 +163,11 @@ const AudioPlayer = () => {
           </h2>
           <div className="flex w-full gap-2">
             <img
-              src={isMuted ? "/icons/unmute.svg" : "/icons/mute.svg"}
+              src={
+                isMuted
+                  ? "/podcast-website/icons/unmute.svg"
+                  : "/podcast-website/icons/mute.svg"
+              }
               width={24}
               height={24}
               alt="mute unmute"

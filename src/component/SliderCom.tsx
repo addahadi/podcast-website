@@ -4,8 +4,8 @@ import PodcastCard from './PodcastCard'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { SliderProps as Slide } from '@/utils/type';
+// @ts-ignore
 import Slider from "react-slick";
-import { useMediaQuery } from 'rsuite';
 
 
 

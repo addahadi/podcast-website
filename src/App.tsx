@@ -3,7 +3,7 @@ import './App.css'
 import { Routes , Route,} from 'react-router-dom'
 import Dashboard from  "../app/Dashboard"
 import Discover from "../app/Discover"
-import {Auth , app, database} from "./utils/fireConfig"
+import {Auth , database} from "./utils/fireConfig"
 import { useEffect, useState } from 'react'
 import { podcastdata, UserState } from './utils/type'
 import SignIn from "../app/SignIn"
@@ -19,13 +19,13 @@ function App() {
   
   const [currentuser , setCurrentuser] = useState<UserState>(null)
   const [token , setToken] = useState<string>('')
+  // @ts-ignore
   const [podcastID , setPodcastID] = useState('')
   const [podcastData , setPodcastData] = useState<podcastdata | undefined>()
   const [view , setView] = useState<number>(0)
   useEffect(()=>{
     async function FetchData(){
       await APIController().getToken().then((data)=>{
-        console.log("successed")
         setToken(data)
       })
 

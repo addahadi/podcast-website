@@ -4,6 +4,7 @@ import PodcastCard from "@/component/PodcastCard"
 import { useNavigate } from "react-router-dom"
 import { podcastdata, PodcastProps } from "@/utils/type"
 import { Loader } from "rsuite"
+import { SearchSlash } from "lucide-react"
 
 const Discover = ({token,setPodcastData , setPodcastID} : PodcastProps & {token : string}) => {
   const [search , setSearch] = useState('')
@@ -13,10 +14,9 @@ const Discover = ({token,setPodcastData , setPodcastID} : PodcastProps & {token 
   async function Search(){
     setloading(true)
     if(!search) return 
-    await APIController().getSearch(search,token,"show",10).then((data)=>{
+    await APIController().getSearch(search,token,"show",20).then((data)=>{
       const {shows : {items}} = data
       setShows(items)
-      console.log(items)
       setloading(false)
     })
   }
@@ -42,7 +42,7 @@ const Discover = ({token,setPodcastData , setPodcastID} : PodcastProps & {token 
       </div>  
     </div>
     {!loading ? <main className="absolute top-[200px] left-0 podcastgrid w-full place-items-center">
-        {shows.map((value:any,index:number)=>{
+        {shows ? shows.map((value:any,index:number)=>{
           const {id , images , publisher , name , description} = value
           const Value = {
               id : id , 
@@ -56,7 +56,7 @@ const Discover = ({token,setPodcastData , setPodcastID} : PodcastProps & {token 
                 <PodcastCard key={index}  value={Value} handleClick={() => handleClick(Value)}/>
 
             )
-        })}
+        }) : <div className="text-white-1">No results found <SearchSlash size={20}/></div>}
     </main> :
      <div className=" absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 ">
       <Loader size="lg" color="white" />
